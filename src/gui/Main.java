@@ -15,6 +15,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("SQL Injection Attack Demonstration Tool");
         primaryStage.setScene(new Scene(root, 754, 413));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
