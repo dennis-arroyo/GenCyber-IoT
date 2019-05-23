@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InternetOfThings:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InternetOfThings_jar</output-path>
+    <root id="archive" name="InternetOfThings.jar">
+      <element id="module-output" name="InternetOfThings" />
+    </root>
+  </artifact>
+</component>
