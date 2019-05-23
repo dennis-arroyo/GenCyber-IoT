@@ -1,7 +1,4 @@
-package de.vogella.mysql.first.test;
-
-import de.vogella.mysql.first.MySQLAccess;
-
+package logic;
 import java.util.Scanner;
 
 public class Main {

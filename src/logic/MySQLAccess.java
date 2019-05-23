@@ -1,4 +1,4 @@
-package de.vogella.mysql.first;
+package logic;
 import java.sql.*;
 
 import java.sql.Connection;
