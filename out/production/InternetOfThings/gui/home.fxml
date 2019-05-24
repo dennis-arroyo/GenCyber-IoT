@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutX="414.0" layoutY="30.0" prefHeight="354.0" prefWidth="318.0" style="-fx-background-color: #B5DECF;">
          <children>
-            <TextField focusTraversable="false" layoutX="5.0" layoutY="142.0" prefHeight="27.0" prefWidth="310.0" promptText="Ex: 192.0.0.1" style="-fx-background-color: white; -fx-background-radius: 22;" />
+            <TextField fx:id="ipAddress" focusTraversable="false" layoutX="5.0" layoutY="142.0" prefHeight="27.0" prefWidth="310.0" promptText="Ex: 192.0.0.1" style="-fx-background-color: white; -fx-background-radius: 22;" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="79.0" prefHeight="36.0" prefWidth="310.0" text="Enter IP Address and Click Connect" textAlignment="CENTER" textFill="#3c3a3a" />
             <Button fx:id="connectBtn" layoutX="5.0" layoutY="204.0" mnemonicParsing="false" onAction="#connectButton" prefHeight="27.0" prefWidth="310.0" style="-fx-background-color: #66a9d7; -fx-font-weight: bold; -fx-background-radius: 22;" text="Connect" textFill="#3c3a3a" />
          </children></AnchorPane>
