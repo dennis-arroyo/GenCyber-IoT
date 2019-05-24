@@ -1,4 +1,7 @@
-package logic;
+package de.vogella.mysql.first.test;
+
+import de.vogella.mysql.first.MySQLAccess;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,10 +10,17 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the ip of the rasberry pi: ");
-        String url = input.next();
+        String url = input.nextLine();
 
-        dao.setURL(url);
-        dao.readDataBase();
+        dao.setUrl(url);
+
+
+        System.out.println("Enter your username: ");
+        String email = input.nextLine();
+        dao.setEmail(email);
+
+
+        dao.connect();
     }
 
 }

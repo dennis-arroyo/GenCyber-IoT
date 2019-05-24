@@ -1,4 +1,4 @@
-package logic;
+package de.vogella.mysql.first;
 import java.sql.*;
 
 import java.sql.Connection;
@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -17,13 +20,30 @@ public class MySQLAccess {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     private String ip = " ";
+    private String Table = "Name";
+    private String username = " ";
+    private boolean found = false;
+    private  String password = "";
 
-    public void setURL(String url) {
-        this.ip = url;
+
+    public void setEmail(String username) {
+        this.username = username;
+    }
+
+    public void setUrl(String url) {
+
+        if ((!url.equals("192.168.0.132"))) {
+            if (!url.equals("192.168.0.104")) {
+                System.out.println("Wrong IP!");
+                System.exit(1);
+            } else {
+                this.ip = url;
+            }
+        }
     }
 
 
-    public void readDataBase() throws Exception {
+    public void connect() throws Exception {
         try {
             // This will load the MySQL driver, each DB has its own driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -33,76 +53,48 @@ public class MySQLAccess {
 
                 //if ((!connect.isClosed()) && connect != null) { System.out.println(("Eror"));}
 
-                connect = DriverManager.getConnection("jdbc:mysql://" + ip + "/Test?socketTimeout=2000", "pi", "qwerty123456");
+                connect = DriverManager.getConnection("jdbc:mysql://" + ip + "/Test", "pi", "raspberry");
+                if (connect == null){ System.out.println("Error connecting to database"); }
+
+                System.out.println("Connected!");
+
+
+                // Statements allow to issue SQL queries to the database
+                statement = connect.createStatement();
+
+                // Result set get the result of the SQL query
+                String query = "SELECT * FROM Users WHERE User = '" + username + "'";
+
+
+                resultSet = statement.executeQuery(query);
+                //writeResultSet(resultSet);
 
 
 
-
-                //System.out.println("Bye");
-                if (DriverManager.getConnection("jdbc:mysql://" + ip + "/Test?socketTimeout=2000", "pi", "qwerty123456") == null){
-                    System.out.println("Errorr Bitch");
+                while (resultSet.next() != false){
+                    System.out.println("Email: " + resultSet.getString("Email"));
+                    System.out.println(("Password: " + resultSet.getString("Password")));
                 }
-                else{
-                    connect = DriverManager.getConnection("jdbc:mysql://" + ip + "/Test?socketTimeout=2000", "pi", "qwerty123456");
-                }
 
 
 
 
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 System.out.println(e);
 
                 e.getMessage();
             }
-
-            // Statements allow to issue SQL queries to the database
-            statement = connect.createStatement();
-            // Result set get the result of the SQL query
-            resultSet = statement
-                    .executeQuery("SELECT * FROM Names");
-            writeResultSet(resultSet);
-
-            while (resultSet.next() != false) {
-                System.out.println(resultSet.getString("Name"));
-            }
-
-//            // PreparedStatements can use variables and are more efficient
-//            preparedStatement = connect
-//                    .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ? , ?, ?)");
-//            // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
-//            // Parameters start with 1
-//            preparedStatement.setString(1, "Test");
-//            preparedStatement.setString(2, "TestEmail");
-//            preparedStatement.setString(3, "TestWebpage");
-//            preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));
-//            preparedStatement.setString(5, "TestSummary");
-//            preparedStatement.setString(6, "TestComment");
-//            preparedStatement.executeUpdate();
-//
-//            preparedStatement = connect
-//                    .prepareStatement("SELECT myuser, webpage, datum, summary, COMMENTS from feedback.comments");
-//            resultSet = preparedStatement.executeQuery();
-//            writeResultSet(resultSet);
-//
-//            // Remove again the insert comment
-//            preparedStatement = connect
-//                    .prepareStatement("delete from feedback.comments where myuser= ? ; ");
-//            preparedStatement.setString(1, "Test");
-//            preparedStatement.executeUpdate();
-//
-//            resultSet = statement
-//                    .executeQuery("select * from feedback.comments");
-//            writeMetaData(resultSet);
-
         } catch (Exception e) {
-             e.getMessage();
+            e.getMessage();
 
 
         } finally {
             close();
         }
-
     }
+
+
+
 
     private void writeMetaData(ResultSet resultSet) throws SQLException {
         //  Now get some metadata from the database
