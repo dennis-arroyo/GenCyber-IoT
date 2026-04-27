@@ -1,6 +1,6 @@
 # GenCyber-IoT
 
-A beginner-friendly **SQL Injection Demonstration Tool** built in Java + JavaFX, designed to introduce young students to cybersecurity concepts during a [GenCyber](https://www.gen-cyber.com/) summer camp.
+A beginner-friendly **SQL Injection Demonstration Tool** built in Java + JavaFX, designed to introduce middle and high school girls to cybersecurity concepts during the Ladies Can Code edition of [GenCyber](https://www.gen-cyber.com/) summer 2019.
 
 This was one of my early personal projects. It's not polished, and there are plenty of things I would do differently today — but it served its real purpose: getting middle- and high-school students curious about how attackers think, and how a single line of insecure code can give them the keys to a database.
 
@@ -22,7 +22,7 @@ That single line of string concatenation is the entire vulnerability. Students s
 
 ## Why I built it
 
-I wanted something more hands-on than slides. Telling a 12-year-old "never trust user input" is forgettable. Letting them type `' OR '1'='1 --` into a login box and watch a database spill its contents is not.
+I wanted something more hands-on than slides. Telling a young student "never trust user input" is forgettable. Letting them type `' OR '1'='1 --` into a login box and watch a database spill its contents is not.
 
 The "IoT" in the name comes from the camp's framing — the database lived on a Raspberry Pi, which the students could physically see and touch. It made the abstract idea of "a server" tangible.
 
